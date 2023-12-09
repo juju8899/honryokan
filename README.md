@@ -32,3 +32,6 @@
 ## 使用素材
 - 外部からのデータ取得として以下を使用
    * RakutenDevelopers (https://webservice.rakuten.co.jp/documentation/books-book-search#siteHead)
+
+## ER図
+![ER Diagram](https://github.com/juju8899/honryokan/blob/main/PF.ER%E5%9B%B3.drawio.svg)
