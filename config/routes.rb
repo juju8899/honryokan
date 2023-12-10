@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
-  devise_for :customers,skip: [:passwords], controllers: {
+  namespace :admin do
+    get 'comments/index'
+  end
+  namespace :admin do
+    get 'homes/top'
+  end
+  namespace :public do
+    get 'users/show'
+    get 'users/edit'
+    get 'users/confirm'
+  end
+  devise_for :user,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
