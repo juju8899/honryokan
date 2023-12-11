@@ -12,8 +12,9 @@ Rails.application.routes.draw do
   # 管理者側ルーティング
   namespace :admin do
     root to: 'homes#top'
-    resources :users, only: [:update] do
-      resource :comments, only: [:index, :destroy]
+    resources :users, only: [:index, :update]
+    resources :posts do
+      resources :comments, only: [:index, :destroy]
     end
   end
 
@@ -25,7 +26,7 @@ Rails.application.routes.draw do
       resource :favorite, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
-    resources :users, only:[:show, :edit] do
+    resources :users, only:[:index, :show, :edit] do
       collection do
         get :confirm
         patch :withdrawal
