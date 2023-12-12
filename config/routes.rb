@@ -8,6 +8,11 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
+  # ゲストログインルーティング
+  devise_scope :user do
+    post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
+  end
 
   # 管理者側ルーティング
   namespace :admin do
@@ -26,7 +31,7 @@ Rails.application.routes.draw do
       resource :favorite, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
-    resources :users, only:[:index, :show, :edit] do
+    resources :users, only:[:index, :show, :edit, :update] do
       collection do
         get :confirm
         patch :withdrawal

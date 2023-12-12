@@ -1,2 +1,65 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<!--ユーザーマイページ-->
+<div class="container mt-4 mb-4">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>マイページ</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <%= image_tag @user.get_profile_image(100, 100) %>
+        </div>
+        <div class="col-md-5">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>ニックネーム</td>
+                <td><%= @user.nick_name %></td>
+              </tr>
+              <tr>
+                <td>自己紹介</td>
+                <td><%= @user.introduction %></td>
+              </tr>
+              <tr>
+                <td>お気に入り</td>
+                <td>件</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <% unless @user.guest_user? %>
+          <div class="col-md-3 d-flex align-items-end">
+            <%= link_to "プロフィールを編集する", edit_user_path(@user), class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h4><%= @user.nick_name %>の投稿   <%= @user.posts.count %> 件</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>投稿タイトル</th>
+                <th>いいね</th>
+                <th>コメント</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @posts.each do |post| %>
+              <tr>
+                <td></td>
+                <td><%= link_to post.title, post_path(post.id) %></td>
+                <td>いいね数</td>
+                <td>コメント数</td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
