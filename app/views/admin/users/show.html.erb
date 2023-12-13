@@ -22,7 +22,7 @@
                 <td>コメント数</td>
               </tr>
               <tr>
-                <td><button type="button" class="btn btn-danger">強制退会</button></td>
+                <td><%= link_to "強制退会", admin_user_path(@user.id), method: :patch, "data-confirm" => "このユーザーを退会させますか？", class: "btn btn-danger ml-4"%></td>
                 <td><button type="button" class="btn btn-primary">コメント一覧へ</button></td>
               </tr>
             </tbody>

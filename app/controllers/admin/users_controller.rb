@@ -6,14 +6,15 @@ class Admin::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
   end
-  
+
   def update
     @user = User.find(params[:id])
-    if @user.update(_params)
-      flash[:notice] = "変更を保存しました"
-      redirect_to admin_customer_path(@customer)
+    if @user.update(is_status: false)
+      sign_out @user
+      flash[:notice] = "強制退会"
+      redirect_to admin_root_path
     else
-      render :edit
+      render :show
     end
   end
 end
