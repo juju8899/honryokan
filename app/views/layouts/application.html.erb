@@ -13,6 +13,11 @@
   <body>
     <!--ヘッダー部分テンプレート-->
     <%= render 'layouts/header' %>
+    <div class="text-center">
+      <% flash.each do |message_type, message| %>
+        <div class="flash-message <%= message_type %>"><%= message %></div>
+      <% end %>
+    </div>
     <main>
       <%= yield %>
     </main>

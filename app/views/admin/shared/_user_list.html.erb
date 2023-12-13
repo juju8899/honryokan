@@ -1,0 +1,23 @@
+<div class="container mt-4 mb-4">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>ユーザー一覧</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <tbody>
+          <% @users.each do |user| %>
+          <tr>
+            <td><%= image_tag user.get_profile_image(100, 100) %></td>
+            <td><%= user.nick_name %></td>
+            <td><%= link_to "ユーザー詳細", admin_user_path(user), class: "btn btn-primary" %></td>
+            <td><%#= link_to "コメント #{user.comments.count} 件", admin_post_comments_path %>コメント数</td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

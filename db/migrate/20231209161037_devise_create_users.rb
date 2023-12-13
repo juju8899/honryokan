@@ -17,7 +17,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       # カラム追記
       t.string :nick_name,          null: false
       t.string :introduction
-      t.boolean :status,            null: false, default: true
+      t.boolean :is_status,            null: false, default: true
 
       ## Trackable
       # t.integer  :sign_in_count, default: 0, null: false

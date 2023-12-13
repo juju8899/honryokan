@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 2023_12_10_133044) do
     t.datetime "remember_created_at"
     t.string "nick_name", null: false
     t.string "introduction"
-    t.boolean "status", default: true, null: false
+    t.boolean "is_status", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
