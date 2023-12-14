@@ -1,1 +1,62 @@
-<h1>新規投稿ページ</h1>
+<div class="container mt-4 mb-3">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>新規投稿</h2>
+      <%= form_with url: posts_search_path, method: :get do |f| %>
+      <div class="row mt-4">
+        <div class="col-md-4">
+          <p>本を選ぶ</p>
+        </div>
+        <div class="col-md-8">
+          <div class="form-group">
+            <%= f.text_field :keyword, class: "form-control" %>
+          </div>
+          <div class="col-md-2">
+            <%= f.submit '検索', class: "form-control btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <%= form_with model: @post do |f| %>
+      <div class="row">
+        <div class="col-md-4">
+          <p>投稿タイトル</p>
+        </div>
+        <div class="col-md-8">
+          <div class="form-group">
+            <%= f.text_field :title, class: 'form-control post_title' %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <p>おすすめ理由</p>
+        </div>
+        <div class="col-md-8">
+          <div class="form-group">
+            <%= f.text_field :point, class: 'form-control point' %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <p>タグ付け</p>
+        </div>
+        <div class="col-md-8">
+          <div class="form-group">
+            <%= f.text_field :tag, class: 'form-control tag' %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 text-center">
+          <div class="form-group">
+            <%= f.submit "投稿", class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
+
