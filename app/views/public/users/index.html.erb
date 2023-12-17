@@ -1,1 +1,21 @@
-<h1>ユーザー一覧ページ</h1>
+<!--ユーザー一覧画面-->
+<div class="container mt-4 mb-3">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>ユーザー一覧</h2>
+      <% @users.each do |user| %>
+      <div class="row">
+        <div class="col-md-4">
+          <%= link_to user_path(user) do %>
+            <%= image_tag user.get_profile_image(200, 200), class:"userimage" %>
+          <% end %>
+        </div>
+        <div class="col-md-4">
+          <h3><%= user.nick_name %></h3><br>
+          投稿数 <%= link_to user.posts.count, post_path(user) %> 件
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

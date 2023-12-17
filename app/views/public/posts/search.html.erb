@@ -14,7 +14,7 @@
           <%= book.item_caption %><br>
         </div>
         <div class="col-md-4 my-auto">
-          <button type="button" class="btn btn-primary">おすすめする</button>
+          <%= link_to "おすすめする", new_post_path(title: book.title, author: book.author, synopsis: book.item_caption, image: book.medium_image_url), class: "btn btn-primary" %>
         </div>
       </div>
       <% end %>

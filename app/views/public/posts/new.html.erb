@@ -3,22 +3,24 @@
     <div class="col-md-12">
       <h2>新規投稿</h2>
       <%= form_with url: posts_search_path, method: :get do |f| %>
-      <div class="row mt-4">
-        <div class="col-md-4">
+      <div class="row mt-5">
+        <div class="col-md-4 form-group">
           <p>本を選ぶ</p>
         </div>
-        <div class="col-md-8">
-          <div class="form-group">
-            <%= f.text_field :keyword, class: "form-control" %>
-          </div>
-          <div class="col-md-2">
-            <%= f.submit '検索', class: "form-control btn btn-primary" %>
-          </div>
+        <div class="col-md-5 form-group">
+          <%= f.text_field :keyword, class: "form-control" %>
+        </div>
+        <div class="col-md-3 form-group">
+          <%= f.submit '検索', class: "col-md-3 form-control btn btn-primary" %>
         </div>
       </div>
       <% end %>
+      <p><%= params[:image] %></p>
+      <h2><%= params[:title] %></h2>
+      <p><%= params[:author] %></p>
+      <p><%= params[:synopsis] %></p>
       <%= form_with model: @post do |f| %>
-      <div class="row">
+      <div class="row my-3">
         <div class="col-md-4">
           <p>投稿タイトル</p>
         </div>
@@ -28,17 +30,17 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row my-3">
         <div class="col-md-4">
           <p>おすすめ理由</p>
         </div>
         <div class="col-md-8">
           <div class="form-group">
-            <%= f.text_field :point, class: 'form-control point' %>
+            <%= f.text_area :point, rows: '5', class: 'form-control point' %>
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row my-3">
         <div class="col-md-4">
           <p>タグ付け</p>
         </div>
@@ -48,10 +50,10 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-4 text-center">
+      <div class="row mt-5">
+        <div class="col-md-12 text-center">
           <div class="form-group">
-            <%= f.submit "投稿", class: 'btn btn-primary' %>
+            <%= f.submit "投稿", class: 'col-3 btn btn-primary' %>
           </div>
         </div>
       </div>
