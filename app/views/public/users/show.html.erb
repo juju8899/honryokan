@@ -25,6 +25,7 @@
             </tbody>
           </table>
         </div>
+        <!--ログイン中のユーザーがゲストユーザーではなく、かつ表示中のユーザーと一致している場合、編集・退会ボタンを表示-->
         <% if !@user.guest_user? && @user == current_user %>
           <div class="col-md-4 d-flex align-items-end">
             <%= link_to "プロフィールを編集", edit_user_path(@user), class: "btn btn-primary" %>

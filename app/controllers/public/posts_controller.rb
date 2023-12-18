@@ -4,25 +4,20 @@ class Public::PostsController < ApplicationController
   end
 
   def search
+    # 楽天APIを使用して書籍検索を行う
     if params[:keyword]
       @books = RakutenWebService::Books::Book.search(title: params[:keyword])
-      # Rails.cache.write('selected_book_info', {
-      #   title: @books.first.title,
-      #   author: @books.first.author,
-      #   summary: @books.first.item_caption,
-      #   image_url: @books.first.medium_image_url
-      # })
-      # redirect_to new_post_path
     end
   end
 
   def create
     @post = Post.new(post_params)
-    @post.user_id =current_user.id
-    @tag_list = params[:post][:name].split('、')
+    @post.user_id = current_user.id
+
     if @post.save
+      tag_list = params[:post][:tag_id].split(',').map(&:strip)
       @post.save_tags(tag_list)
-      redirect_to post_path(@post),notice: "投稿しました"
+      redirect_to post_path(@post), notice: "投稿しました"
     else
       render :new
     end
@@ -34,6 +29,12 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :point)
   end
 
 end

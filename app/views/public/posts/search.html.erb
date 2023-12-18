@@ -4,7 +4,8 @@
     <div class="col-md-12">
       <h2>検索結果一覧</h2>
       <% @books.each do |book| %>
-      <div class="row my-auto">
+      <!--出力パラメータの表示-->
+      <div class="row mt-4">
         <div class="col-md-4">
           <%= link_to (image_tag(book.large_image_url)), book.item_url %><br>
         </div>
@@ -13,6 +14,7 @@
           <%= book.author %><br>
           <%= book.item_caption %><br>
         </div>
+        <!--おすすめボタンを押下すると選んだ書籍の情報が新規登録画面に送られる-->
         <div class="col-md-4 my-auto">
           <%= link_to "おすすめする", new_post_path(title: book.title, author: book.author, synopsis: book.item_caption, image: book.medium_image_url), class: "btn btn-primary" %>
         </div>
@@ -21,9 +23,3 @@
     </div>
   </div>
 </div>
-        <%# @books.each do |book| %>
-            <%#= link_to (image_tag(book.medium_image_url)), book.item_url %><br>
-            <%#= book.title %><br>
-            <%#= book.author %><br>
-            <%#= book.item_caption %><br>
-        <%# end %>

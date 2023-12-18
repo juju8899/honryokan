@@ -8,17 +8,25 @@
           <p>本を選ぶ</p>
         </div>
         <div class="col-md-5 form-group">
-          <%= f.text_field :keyword, class: "form-control" %>
+          <%= f.text_field :keyword, placeholder: "書籍のタイトルを入力", class: "form-control" %>
         </div>
         <div class="col-md-3 form-group">
           <%= f.submit '検索', class: "col-md-3 form-control btn btn-primary" %>
         </div>
       </div>
       <% end %>
-      <p><%= params[:image] %></p>
-      <h2><%= params[:title] %></h2>
-      <p><%= params[:author] %></p>
-      <p><%= params[:synopsis] %></p>
+      <div class="row">
+        <div class="col-md-2">
+          <img src="<%= params[:image] %>" alt="選んだ本の画像が表示されます">
+        </div>
+        <div class="col-md-4">
+          <h2><%= params[:title] %></h2><br>
+          <p><%= params[:author] %></p><br>
+        </div>
+        <div class="col-6">
+          <p><%= params[:synopsis] %></p>
+        </div>
+      </div>
       <%= form_with model: @post do |f| %>
       <div class="row my-3">
         <div class="col-md-4">
@@ -46,7 +54,8 @@
         </div>
         <div class="col-md-8">
           <div class="form-group">
-            <%= f.text_field :tag, class: 'form-control tag' %>
+            <label>タグ(、で区切ると複数タグ登録できます)</label>
+            <%= f.text_field :tag_id, class: 'form-control tag_id' %>
           </div>
         </div>
       </div>
