@@ -10,9 +10,11 @@
             <%= image_tag user.get_profile_image(200, 200), class:"userimage" %>
           <% end %>
         </div>
-        <div class="col-md-4">
-          <h3><%= user.nick_name %></h3><br>
-          投稿数 <%= link_to user.posts.count, post_path(user) %> 件
+        <div class="col-md-4 my-auto">
+          <h3><%= user.nick_name %></h3>
+        </div>
+        <div class="col-md-4 my-auto">
+          投稿数 <%= link_to user.posts.count, user_path(user) %> 件
         </div>
       </div>
       <% end %>

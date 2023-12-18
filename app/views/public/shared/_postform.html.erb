@@ -1,0 +1,63 @@
+<%= form_with url: posts_search_path, method: :get do |f| %>
+<div class="row mt-5">
+  <div class="col-md-4 text-center form-group">
+    <p>本を選ぶ</p>
+  </div>
+  <div class="col-md-5 form-group">
+    <%= f.text_field :keyword, placeholder: "書籍のタイトルを入力", class: "form-control" %>
+  </div>
+  <div class="col-md-3 form-group">
+    <%= f.submit '検索', class: "col-md-3 form-control btn btn-primary" %>
+  </div>
+</div>
+<% end %>
+<div class="row">
+  <div class="col-md-4 text-center">
+    <img src="<%= params[:image] %>" alt="選んだ本の画像が表示されます">
+  </div>
+  <div class="col-md-6">
+    <h2><%= params[:title] %></h2><br>
+    <p><%= params[:author] %></p><br>
+    <p><%= params[:synopsis] %></p>
+  </div>
+</div>
+<%= form_with model: post do |f| %>
+<div class="row my-3">
+  <div class="col-md-4 text-center">
+    <p>投稿タイトル</p>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= f.text_field :title, class: 'form-control post_title' %>
+    </div>
+  </div>
+</div>
+<div class="row my-3 text-center">
+  <div class="col-md-4 my-auto">
+    <p>おすすめ理由</p>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= f.text_area :point, rows: '5', class: 'form-control point' %>
+    </div>
+  </div>
+</div>
+<div class="row my-3 text-center">
+  <div class="col-md-4 my-auto">
+    <p>タグ付け</p>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>タグ(,で区切ると複数タグ登録できます)</label>
+      <%= f.text_field :tag_id, class: 'form-control tag_id' %>
+    </div>
+  </div>
+</div>
+<div class="row my-4">
+  <div class="col-md-12 text-center">
+    <div class="form-group">
+      <%= f.submit "投稿", class: 'col-3 btn btn-primary' %>
+    </div>
+  </div>
+</div>
+<% end %>
