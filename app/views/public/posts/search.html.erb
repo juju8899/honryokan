@@ -16,7 +16,7 @@
         </div>
         <!--おすすめボタンを押下すると選んだ書籍の情報が新規登録画面に送られる-->
         <div class="col-md-3 my-auto">
-          <%= link_to "おすすめする", new_post_path(title: book.title, author: book.author, synopsis: book.item_caption, image: book.large_image_url), class: "btn btn-primary" %>
+          <%= link_to "おすすめする", new_post_path(title: book.title, author: book.author, synopsis: book.item_caption, image: book.large_image_url, isbn: book.isbn), class: "btn btn-primary" %>
         </div>
       </div>
       <% end %>

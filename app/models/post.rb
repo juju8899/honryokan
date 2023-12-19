@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :post_tags, dependent: :destroy
-  has_many :tags, through: :post_tags, source: :post
+  has_many :tags, through: :post_tags
   # バリデーション
   validates :title, presence: true
   validates :point, presence: true
@@ -26,9 +26,9 @@ class Post < ApplicationRecord
       self.post_tags << PostTag.create(tag: post_tag)
     end
   end
-  
-  
-  
+
+
+
   # 三瓶さんのコード
   # Tagオブジェクトの名前を取得し(反復処理でname属性を取得)半角スペースで連結し文字として返す
   def tag_list

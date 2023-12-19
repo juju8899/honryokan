@@ -64,6 +64,6 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :point)
+    params.require(:post).permit(:title, :point, :isbn)
   end
 end
