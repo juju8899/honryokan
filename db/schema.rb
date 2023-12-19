@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2023_12_19_121556) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "favoritets", force: :cascade do |t|
+  create_table "favorites", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "post_id", null: false
     t.datetime "created_at", precision: 6, null: false

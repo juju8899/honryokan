@@ -1,31 +1,70 @@
 <div class="container mt-4 mb-3">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-12">
       <h2>投稿詳細ページ</h2>
-      <div class="row">
-        <div class="col-md-4">
-          <!--本の画像を挿入予定<br>-->
-          <!--本のタイトル<br>-->
-          <!--著者名<br>-->
-          <!--発売日-->
+      <div class="row my-5">
+        <div class="col-lg-6 book-section">
+          <!--<div class="row">-->
+            <div class="book-image">
+              <% if @post.isbn.present? %>
+                <% book = RakutenWebService::Books::Book.search(isbn: @post.isbn).first %>
+                <% if book.present? && book.large_image_url.present? %>
+                  <%= image_tag book.large_image_url %>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="book-post">
+              <p>投稿者 : <strong><%= link_to @post.user.nick_name, user_path(@post.user) %></strong></p>
+              <p>投稿タイトル : <%= @post.title %></p>
+              <% @post_tags.each do |tag| %>
+                <i class="fa-solid fa-tag"></i>
+                <%= link_to tag.name,search_tag_path(post_tag_id: tag.id) %>
+              <% end %>
+              <p class="mt-2">おすすめ理由 : <br><%= @post.point %></p><br>
+              <% if @post.user.id == current_user.id %>
+                <%= link_to "編集", edit_post_path(@post), class: "btn btn-primary" %>
+                <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger" %>
+              <% end %>
+              <% if @post.favorited_by?(current_user) %>
+              <p>
+                <%= link_to post_favorite_path(@post), method: :delete do %>
+                  ♥<%= @post.favorites.count %> いいね
+                <% end %>
+              </p>
+              <% else %>
+              <p>
+                <%= link_to post_favorite_path(@post), method: :post do %>
+                  ♡<%= @post.favorites.count %> いいね
+                <% end %>
+              </p>
+              <% end %>
+            </div>
+          <!--</div>-->
         </div>
-        <div class="col-md-8">
-          <p>投稿者 : <%= @post.user.nick_name %></p>
-          <p>投稿タイトル<br></p>
-          <%= @post.tags.name %>
-          <% @post_tags.each do |tag| %>
-            <%= link_to tag.name,search_tag_path(post_tag_id: tag.id) %>
-          <% end %>
-          <h4>
-            <%= @post.title %>
-            <% if @post.user.id == current_user.id %>
-              <%= link_to "編集", edit_post_path(@post), class: "btn btn-primary ml-5" %>
+        <div class="col-lg-6 comment-section">
+          <h3>コメント</h3>
+          <p>コメント件数：<%= @post.comments.count %></p>
+            <% @post.comments.each do |comment| %>
+              <div class="comment-user">
+                <div>
+                  <%= image_tag comment.user.get_profile_image(100,100) %><br>
+                  <%= comment.created_at.strftime('%Y/%m/%d') %>
+                  <%= comment.user.nick_name %>
+                </div>
+                <div>
+                  <%= comment.comment %>
+                  <% if comment.user == current_user %>
+                    <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, class:"btn btn-primary" %>
+                  <% end %>
+                </div>
+              </div>
             <% end %>
-          </h4><br>
-          <p>あらすじ</p><br>
-          <!--item_caption-->
-          <p>おすすめ理由</p><br>
-          <p><%= @post.point %></p>
+          <div>
+            <%= form_with model: [@post, @comment] do |f| %>
+              <%= f.text_area :comment, rows: '5', placeholder: "コメント", class:"mt-4" %>
+              <%= f.submit "送信する" %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

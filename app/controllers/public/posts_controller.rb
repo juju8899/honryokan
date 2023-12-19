@@ -39,14 +39,15 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @tag_list = @post.post_tags.pluck(:tag_id).join(',')
+    @tag_list = @post.post_tags.pluck(:name).join(',')
     @post_tags = @post.tags
     @user = @post.user
+    @comment = Comment.new
   end
 
   def edit
     @post = Post.find(params[:id])
-    @tag_list = @post.tags.pluck(:tag_id).join(',')
+    @tag_list = @post.tags.pluck(:name).join(',')
   end
 
   def update
@@ -59,6 +60,12 @@ class Public::PostsController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy
+    redirect_to posts_path
   end
 
   private

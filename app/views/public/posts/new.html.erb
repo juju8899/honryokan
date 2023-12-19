@@ -1,9 +1,31 @@
 <div class="container mt-4 mb-3">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-12">
       <h2>新規投稿</h2>
+      <%= form_with url: posts_search_path, method: :get do |f| %>
+      <div class="row mt-5">
+        <div class="col-lg-4 text-center form-group">
+          <p>本を選ぶ</p>
+        </div>
+        <div class="col-lg-5 form-group">
+          <%= f.text_field :keyword, placeholder: "書籍のタイトルを入力", class: "form-control" %>
+        </div>
+        <div class="col-lg-3 form-group">
+          <%= f.submit '検索', class: "col-md-3 form-control btn btn-primary" %>
+        </div>
+      </div>
+      <% end %>
+      <div class="row">
+        <div class="col-lg-4 text-center">
+          <img src="<%= params[:image] %>" alt="選んだ本の画像が表示されます">
+        </div>
+        <div class="col-lg-6">
+          <h2><%= params[:title] %></h2><br>
+          <p><%= params[:author] %></p><br>
+          <p><%= params[:synopsis] %></p>
+        </div>
+      </div>
       <%= render 'public/shared/postform', post: @post %>
-      <
     </div>
   </div>
 </div>
