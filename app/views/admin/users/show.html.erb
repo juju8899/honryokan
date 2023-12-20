@@ -22,7 +22,13 @@
                 <td>コメント数</td>
               </tr>
               <tr>
-                <td><%= link_to "強制退会", admin_user_path(@user.id), method: :patch, "data-confirm" => "このユーザーを退会させますか？", class: "btn btn-danger ml-4"%></td>
+                <td>
+                  <% if @user.is_status == true %>
+                    <%= link_to "強制退会", admin_user_path(@user.id), method: :patch, "data-confirm" => "このユーザーを退会させますか？", class: "btn btn-danger ml-4"%>
+                  <% else %>
+                    <%= link_to "有効化", active_admin_user_path(@user.id), method: :patch, "data-confirm" => "このユーザーを有効にしますか？", class: "btn btn-primary ml-4"%>
+                  <% end %>
+                </td>
                 <td><button type="button" class="btn btn-primary">コメント一覧へ</button></td>
               </tr>
             </tbody>

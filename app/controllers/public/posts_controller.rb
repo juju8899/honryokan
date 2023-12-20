@@ -11,13 +11,17 @@ class Public::PostsController < ApplicationController
   end
 
   def search_tag
-    #検索結果画面でもタグ一覧表示
-    @tag_list = PostTag.all
-    　#検索されたタグを受け取る
+    #検索されたタグを受け取る
     @tag = Tag.find(params[:tag_id])
-    　#検索されたタグに紐づく投稿
-    @posts = @tag.posts
+    #検索されたタグに紐づく投稿
+    @posts = @tag.posts.all
   end
+  
+  def search_title
+    @word = params[:word]
+    @posts = Post.all
+  end
+    
 
   def create
     @post = Post.new(post_params)
@@ -65,7 +69,7 @@ class Public::PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
-    redirect_to posts_path
+    redirect_to user_path(current_user),notice: "削除しました"
   end
 
   private

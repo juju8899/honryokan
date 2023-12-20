@@ -18,12 +18,12 @@
               <p>投稿タイトル : <%= @post.title %></p>
               <% @post_tags.each do |tag| %>
                 <i class="fa-solid fa-tag"></i>
-                <%= link_to tag.name,search_tag_path(post_tag_id: tag.id) %>
+                <%= link_to tag.name,search_tag_path(tag_id: tag.id) %>
               <% end %>
               <p class="mt-2">おすすめ理由 : <br><%= @post.point %></p><br>
               <% if @post.user.id == current_user.id %>
                 <%= link_to "編集", edit_post_path(@post), class: "btn btn-primary" %>
-                <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger" %>
+                <%= link_to "削除", post_path(@post), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %>
               <% end %>
               <% if @post.favorited_by?(current_user) %>
               <p>
@@ -43,7 +43,7 @@
         </div>
         <div class="col-lg-6 comment-section">
           <h3>コメント</h3>
-          <p>コメント件数：<%= @post.comments.count %></p>
+          <p><i class="fa-regular fa-comment"></i><%= @post.comments.count %>件</p>
             <% @post.comments.each do |comment| %>
               <div class="comment-user">
                 <div>

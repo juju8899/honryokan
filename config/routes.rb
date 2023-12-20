@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   # 管理者側ルーティング
   namespace :admin do
     root to: 'homes#top'
-    resources :users, only: [:index, :show, :update]
+    resources :users, only: [:index, :show, :update] do
+      member do
+        patch :active
+      end
+    end
     resources :posts do
       resources :comments, only: [:index, :destroy]
     end
@@ -29,11 +33,13 @@ Rails.application.routes.draw do
     get '/about' => 'homes#about'
     get 'posts/search' => "posts#search"
     get 'search_tag' => "posts#search_tag"
+    get 'search_title' => "posts#search_title"
     resources :posts do
       resource :favorite, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
     resources :users, only:[:index, :show, :edit, :update] do
+      resource :favorite, only: [:index]
       collection do
         get :confirm
         patch :withdrawal
