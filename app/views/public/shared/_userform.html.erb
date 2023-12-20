@@ -16,7 +16,7 @@
         </tr>
         <tr>
           <td>いいねした件数</td>
-          <td><%= link_to user.favorites.count, favorites_post_path %></td>
+          <td><%= link_to user.favorites.count, user_favorites_path(user) %></td>
         </tr>
       </tbody>
     </table>

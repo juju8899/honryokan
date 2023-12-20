@@ -18,12 +18,10 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
     resources :users, only: [:index, :show, :update] do
+      resources :comments, only: [:index, :destroy]
       member do
         patch :active
       end
-    end
-    resources :posts do
-      resources :comments, only: [:index, :destroy]
     end
   end
 
@@ -39,7 +37,7 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy]
     end
     resources :users, only:[:index, :show, :edit, :update] do
-      resource :favorite, only: [:index]
+      resources :favorites, only: [:index]
       collection do
         get :confirm
         patch :withdrawal

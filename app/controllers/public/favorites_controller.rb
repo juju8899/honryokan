@@ -14,7 +14,8 @@ class Public::FavoritesController < ApplicationController
   end
 
   def index
-    @user = User.find(params[:id])
-    @posts = @user.favorite.posts
+    user_id = params[:user_id]
+    @user = User.find(user_id)
+    @posts = @user.favorites.map(&:post)
   end
 end
