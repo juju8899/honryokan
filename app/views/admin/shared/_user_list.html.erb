@@ -13,7 +13,7 @@
             <td class="align-middle"><%= image_tag user.get_profile_image(100, 100) %></td>
             <td class="align-middle"><%= link_to user.nick_name, admin_user_path(user) %></td>
             <td class="align-middle"><%= "投稿数#{user.posts.count} 件" %></td>
-            <td class="align-middle"><%= "コメント #{user.comments.count} 件" %></td>
+            <td class="align-middle"><%= link_to "コメント #{user.comments.count} 件", admin_user_comments_path(user) %></td>
             <td class="align-middle"><%= user.is_status ? '有効' : '退会' %></td>
           </tr>
           <% end %>
