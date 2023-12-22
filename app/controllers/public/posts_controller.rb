@@ -1,4 +1,6 @@
 class Public::PostsController < ApplicationController
+  before_action :edit_authorize, only: [:edit, :update]
+
   def new
     @post = Post.new
   end
@@ -16,12 +18,12 @@ class Public::PostsController < ApplicationController
     #検索されたタグに紐づく投稿
     @posts = @tag.posts.all
   end
-  
+
   def search_title
     @word = params[:word]
     @posts = Post.all
   end
-    
+
 
   def create
     @post = Post.new(post_params)
@@ -76,5 +78,13 @@ class Public::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :point, :isbn)
+  end
+
+  def edit_authorize
+    @post = Post.find(params[:id])
+    user = @post.user
+    unless user.id == current_user.id
+      redirect_to root_path
+    end
   end
 end

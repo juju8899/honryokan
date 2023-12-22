@@ -2,64 +2,16 @@
 <div class="container mt-4 mb-3">
   <div class="row">
     <div class="col-12">
-      <h2>マイページ</h2>
-      <div class="row">
-        <div class="col-lg-4">
-          <%= image_tag @user.get_profile_image(200, 200), class:"userimage" %>
-        </div>
-        <div class="col-lg-4">
-          <table class="table">
-            <tbody>
-              <tr>
-                <td>ニックネーム</td>
-                <td><%= @user.nick_name %></td>
-              </tr>
-              <tr>
-                <td>自己紹介</td>
-                <td><%= @user.introduction %></td>
-              </tr>
-              <tr>
-                <td>いいねした件数</td>
-                <td><%= @user.favorites.count %></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <!--ログイン中のユーザーがゲストユーザーではなく、かつ表示中のユーザーと一致している場合、編集・退会ボタンを表示-->
-        <% if !@user.guest_user? && @user == current_user %>
-          <div class="col-lg-4 d-flex align-items-end">
-            <%= link_to "プロフィールを編集", edit_user_path(@user), class: "btn btn-primary" %>
-            <%= link_to "退会", confirm_users_path, class: "btn btn-danger ml-3" %>
-          </div>
-        <% end %>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <h4>いいねした投稿一覧</h4>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>投稿タイトル</th>
-                <th>いいね</th>
-                <th>コメント</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @posts.each do |post| %>
-              <tr>
-                <td><%= link_to post.title, post_path(post.id) %></td>
-                <td><%= post.favorites.count %></td>
-                <td><%= link_to "#{post.comments.count}", post_path(post.id) %></td>
-              </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <h4>プロフィール</h4>
+    </div>
+  </div>
+    <%= render 'public/shared/userform', user: @user %>
+  <div class="col-12">
+    <h4>いいねした投稿一覧</h4>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <%= render 'public/shared/post', posts: @posts %>
     </div>
   </div>
 </div>

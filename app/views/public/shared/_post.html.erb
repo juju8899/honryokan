@@ -1,7 +1,10 @@
+<!--投稿部分テンプレート-->
 <table class="table">
   <thead>
     <tr>
+      <th></th>
       <th>投稿タイトル</th>
+      <th>ニックネーム</th>
       <th>いいね</th>
       <th>コメント</th>
       <th></th>
@@ -10,10 +13,11 @@
   <tbody>
     <% posts.each do |post| %>
     <tr>
-      <td><%= link_to post.title, post_path(post.id) %></td>
-      <td><%= post.favorites.count %></td>
-      <td><%= link_to "#{post.comments.count}", post_path(post.id) %></td>
-      <th></th>
+      <td class="align-middle"><%= post.created_at.strftime("%Y年%m月%d日 %H時") %></td>
+      <td class="align-middle"><%= link_to post.title, post_path(post.id) %></td>
+      <td class="align-middle"><%= post.user.nick_name %></td>
+      <td class="align-middle"><%= post.favorites.count %></td>
+      <td class="align-middle"><%= link_to "#{post.comments.count}", post_path(post.id) %></td>
     </tr>
     <% end %>
   </tbody>

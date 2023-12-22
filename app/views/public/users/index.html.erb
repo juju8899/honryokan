@@ -1,25 +1,34 @@
 <!--ユーザー一覧画面-->
-<div class="container mt-4 mb-3">
+<div class="container mt-4 mb-4">
   <div class="row">
     <div class="col-12">
       <h2>ユーザー一覧</h2>
-      <% @users.each do |user| %>
-      <div class="row">
-        <div class="col-lg-4">
-          <%= link_to user_path(user) do %>
-            <%= image_tag user.get_profile_image(200, 200), class:"userimage" %>
-          <% end %>
-        </div>
-        <div class="col-lg-4 my-auto">
-          <%= link_to user_path(user) do %>
-            <h4><%= user.nick_name %></h4>
-          <% end %>
-        </div>
-        <div class="col-lg-4 my-auto">
-          投稿数 <%= link_to user.posts.count, user_path(user) %> 件
-        </div>
-      </div>
-      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>プロフィール画像</th>
+            <th>ニックネーム</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td class="align-middle">
+              <%= link_to user_path(user) do %>
+                <%= image_tag user.get_profile_image(100, 100) %>
+              <% end %>
+            </td>
+            <td class="align-middle"><%= link_to user.nick_name, user_path(user) %></td>
+            <td class="align-middle">投稿数 <%= link_to "#{user.posts.count}", user_path(user) %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

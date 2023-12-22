@@ -1,18 +1,23 @@
-<div class="container mt-4 mb-4">
+<!--管理者側ユーザー一覧部分テンプレート-->
+<div class="container mt-3 mb-4">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-12">
       <h2>ユーザー一覧</h2>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-lg-12">
       <table class="table">
         <tbody>
           <% @users.each do |user| %>
           <tr>
-            <td class="align-middle"><%= image_tag user.get_profile_image(100, 100) %></td>
+            <td class="align-middle">
+              <%= link_to admin_user_path(user) do %>
+               <%= image_tag user.get_profile_image(100, 100) %>
+              <% end %>
+            </td>
             <td class="align-middle"><%= link_to user.nick_name, admin_user_path(user) %></td>
-            <td class="align-middle"><%= "投稿数#{user.posts.count} 件" %></td>
+            <td class="align-middle"><%= "投稿数 #{user.posts.count} 件" %></td>
             <td class="align-middle"><%= link_to "コメント #{user.comments.count} 件", admin_user_comments_path(user) %></td>
             <td class="align-middle"><%= user.is_status ? '有効' : '退会' %></td>
           </tr>

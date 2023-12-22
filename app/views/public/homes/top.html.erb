@@ -1,8 +1,9 @@
-<!--ユーザー側トップページ-->
+<!--ユーザー側トップページ(投稿一覧-->
 <div class="container mt-4 mb-4">
   <div class="row">
     <div class="col-md-12">
       <h2>投稿一覧</h2>
+      <%= render 'public/shared/post', posts: @posts %>
     </div>
   </div>
 </div>

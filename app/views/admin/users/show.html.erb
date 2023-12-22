@@ -4,10 +4,10 @@
     <div class="col-md-12">
       <h2>ユーザー詳細</h2>
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-lg-4">
           <div><%= image_tag @user.get_profile_image(250, 250), class: "w-75" %></div>
         </div>
-        <div class="col-md-5">
+        <div class="col-lg-5">
           <table class="table">
             <tbody>
               <tr>
@@ -20,6 +20,7 @@
               </tr>
               <tr>
                 <td>コメント数</td>
+                <td><%= "#{@user.comments.count}件" %></td>
               </tr>
               <tr>
                 <td>
@@ -29,7 +30,7 @@
                     <%= link_to "有効化", active_admin_user_path(@user.id), method: :patch, "data-confirm" => "このユーザーを有効にしますか？", class: "btn btn-primary ml-4"%>
                   <% end %>
                 </td>
-                <td><button type="button" class="btn btn-primary">コメント一覧へ</button></td>
+                <td><%= link_to "コメント一覧へ", admin_user_comments_path(@user), class: "btn btn-primary" %></td>
               </tr>
             </tbody>
           </table>
