@@ -11,7 +11,11 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <%= render 'public/shared/post', posts: @posts %>
+      <% if @posts.present? %>
+        <%= render 'public/shared/post', posts: @posts %>
+      <% else %>
+        <p class="text-center">まだ投稿はありません</p>
+      <% end %>
     </div>
   </div>
 </div>

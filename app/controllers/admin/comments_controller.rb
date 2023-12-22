@@ -3,7 +3,7 @@ class Admin::CommentsController < ApplicationController
     @user = User.find(params[:user_id])
     @comments = @user.comments
   end
-  
+
   def destroy
     comment = Comment.find(params[:id])
     user_id = comment.user_id

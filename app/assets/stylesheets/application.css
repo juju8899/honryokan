@@ -24,3 +24,9 @@
   margin-top: 50px!important;
   margin-bottom: 50px!important;
  }
+
+ .main-container {
+     background-image: url('/assets/books.jpg');
+     background-size: cover; /* 画像を要素に合わせて縮小せずに表示する */
+     background-position: center; /* 画像を中央に配置する */
+   }
