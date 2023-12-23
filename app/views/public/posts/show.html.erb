@@ -21,22 +21,30 @@
                 <%= link_to tag.name,search_tag_path(tag_id: tag.id) %>
               <% end %>
               <p class="mt-2">おすすめ理由 : <br><%= @post.point %></p><br>
-              <% if @post.user.id == current_user.id %>
-                <%= link_to "編集", edit_post_path(@post), class: "btn btn-primary" %>
-                <%= link_to "削除", post_path(@post), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %>
-              <% end %>
-              <% if @post.favorited_by?(current_user) %>
-              <p>
-                <%= link_to post_favorite_path(@post), method: :delete do %>
-                  ♥<%= @post.favorites.count %> いいね
+              <% if user_signed_in? %>
+                <% if @post.user.id == current_user.id %>
+                  <%= link_to "編集", edit_post_path(@post), class: "btn btn-primary" %>
+                  <%= link_to "削除", post_path(@post), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %>
                 <% end %>
-              </p>
+                <% if @post.favorited_by?(current_user) %>
+                <p>
+                  <%= link_to post_favorite_path(@post), method: :delete do %>
+                    ♥<%= @post.favorites.count %> いいね
+                  <% end %>
+                </p>
+                <% else %>
+                <p>
+                  <%= link_to post_favorite_path(@post), method: :post do %>
+                    ♡<%= @post.favorites.count %> いいね
+                  <% end %>
+                </p>
+                <% end %>
               <% else %>
-              <p>
-                <%= link_to post_favorite_path(@post), method: :post do %>
-                  ♡<%= @post.favorites.count %> いいね
-                <% end %>
-              </p>
+                <p>
+                  <%= link_to post_favorite_path(@post), method: :post do %>
+                    ♡<%= @post.favorites.count %> いいね
+                  <% end %>
+                </p>
               <% end %>
             </div>
           <!--</div>-->

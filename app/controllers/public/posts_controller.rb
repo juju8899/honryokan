@@ -16,12 +16,12 @@ class Public::PostsController < ApplicationController
     #検索されたタグを受け取る
     @tag = Tag.find(params[:tag_id])
     #検索されたタグに紐づく投稿
-    @posts = @tag.posts.all
+    @posts = @tag.posts.all.page(params[:page]).per(5)
   end
 
   def search_title
     @word = params[:word]
-    @posts = Post.all
+    @posts = Post.all.page(params[:page]).per(5)
   end
 
 
