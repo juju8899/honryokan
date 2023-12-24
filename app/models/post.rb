@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  # 有効なユーザーの投稿のみ表示
   scope :active_posts, -> { includes(:user).where('users.is_status': true) }
   # アソシエーション
   belongs_to :user
