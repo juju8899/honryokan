@@ -27,7 +27,7 @@
                   <% if @user.is_status == true %>
                     <%= link_to "強制退会", admin_user_path(@user.id), method: :patch, "data-confirm" => "このユーザーを退会させますか？", class: "btn btn-danger ml-4"%>
                   <% else %>
-                    <%= link_to "有効化", active_admin_user_path(@user.id), method: :patch, "data-confirm" => "このユーザーを有効にしますか？", class: "btn btn-primary ml-4"%>
+                    <%= link_to "有効化", active_admin_user_path(@user.id), method: :patch, "data-confirm" => "このユーザーを有効にしますか？", class: "btn btn-success ml-4"%>
                   <% end %>
                 </td>
                 <td><%= link_to "コメント一覧へ", admin_user_comments_path(@user), class: "btn btn-primary" %></td>

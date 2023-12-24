@@ -21,7 +21,7 @@ class Public::PostsController < ApplicationController
 
   def search_title
     @word = params[:word]
-    @posts = Post.all.page(params[:page]).per(5)
+    @posts = Post.looks(@word).page(params[:page]).per(5)
   end
 
 

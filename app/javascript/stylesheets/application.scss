@@ -10,8 +10,8 @@
   top: 0;
 }
 
-body {
-  margin-bottom: 50px!important;
+html,body {
+  height: 100%;
 }
 
 .book-section {
@@ -32,9 +32,16 @@ body {
 }
 
 .about {
-  margin-top: 70px;
   background-position: center;
-  background-color: rgba(#dca6a1, 0.4);
     background-blend-mode: overlay;
     background-repeat: no-repeat;
+}
+
+.bg-about {
+  background-image: url('/assets/about.jpg');
+  background-color: rgba(#fff, 0.4);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+    background-blend-mode: overlay;
 }

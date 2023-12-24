@@ -3,7 +3,11 @@
   <div class="row">
     <div class="col-12">
       <h2>『<%= @word %>』の検索結果</h2>
-      <%= render 'public/shared/post', posts: @posts %>
+      <% if @posts.present? %>
+        <%= render 'public/shared/post', posts: @posts %>
+      <% else %>
+        <h4 class="mt-5 text-center">一致する投稿は見つかりませんでした</h4>
+      <% end %>
     </div>
   </div>
 </div>

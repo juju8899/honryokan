@@ -1,5 +1,5 @@
 class Admin::HomesController < ApplicationController
   def top
-    @users = User.limit(5)
+    @users = User.page(params[:page]).per(5)
   end
 end

@@ -3,12 +3,12 @@ class Public::UsersController < ApplicationController
   before_action :is_matching_login_user, only: [:edit, :update]
 
   def index
-    @users = User.page(params[:page]).per(10)
+    @users = User.active_users.page(params[:page]).per(10)
   end
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page]).per(10)
+    @posts = @user.posts.all
   end
 
   def edit

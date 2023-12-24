@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  scope :active_posts, -> { includes(:user).where('users.is_status': true) }
   # アソシエーション
   belongs_to :user
   has_many :favorites, dependent: :destroy
