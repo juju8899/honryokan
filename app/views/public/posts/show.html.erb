@@ -68,6 +68,7 @@
               </div>
             <% end %>
           <div>
+            <%= render 'public/shared/error_messages', resource: @comment %>
             <%= form_with model: [@post, @comment] do |f| %>
               <%= f.text_area :comment, rows: '5', placeholder: "コメント", class:"mt-4" %>
               <%= f.submit "送信する" %>
