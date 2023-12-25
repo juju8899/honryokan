@@ -20,7 +20,8 @@
 * いろいろな人のおすすめしている本が知りたい時
 ​
 ## 設計書
-後ほど作成予定
+* アプリケーション詳細設計(https://docs.google.com/spreadsheets/d/1F97TaBzSVFI0hLVlNj6xEdYpXk7p7w2BFgrkH4qxYmQ/edit#gid=549108681)
+* テーブル定義書(https://docs.google.com/spreadsheets/d/1Jp9VOZNjasdXlqAnW_r-x1LHVPF02oKA/edit#gid=986568156)
 ​
 ## 開発環境
 - OS：Linux(CentOS)
@@ -34,4 +35,4 @@
    * RakutenDevelopers (https://webservice.rakuten.co.jp/documentation/books-book-search#siteHead)
 
 ## ER図
-![ER Diagram](https://github.com/juju8899/honryokan/blob/main/PF.ER%E5%9B%B3.drawio.svg)
+![ER Diagram](https://github.com/juju8899/honryokan/blob/develop/PF.ER%E5%9B%B3.drawio.svg)
