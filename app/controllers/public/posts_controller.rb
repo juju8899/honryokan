@@ -77,7 +77,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :point, :isbn)
+    params.require(:post).permit(:title, :point, :tag_ids, :isbn)
   end
 
   def edit_authorize
