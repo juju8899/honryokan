@@ -1,4 +1,4 @@
 RakutenWebService.configure do |c|
   # アプリケーションID
-  c.application_id = '1078727522240909400'
+  c.application_id = ENV['RWS_APPLICATION_ID']
 end

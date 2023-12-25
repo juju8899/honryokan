@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Admin.create!(
-  email: 'admin@admin',
-  password: '111111'
-  )
+Admin = Admin.find_or_initialize_by(
+  username: ENV['ADMIN_USERNAME'],
+  email: ENV['ADMIN_EMAIL'],
+)
