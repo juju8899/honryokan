@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  # 有効なユーザー/退会済みユーザー
   scope :active_users, -> { where(is_status: true) }
   scope :delete_users, -> { where(is_status: false) }
   # Include default devise modules. Others available are:

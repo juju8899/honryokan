@@ -45,7 +45,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @tag_list = @post.post_tags.pluck(:name).join(',')
+    @tag_list = @post.post_tags.joins(:tag).pluck('tags.name').join(',')
     @post_tags = @post.tags
     @user = @post.user
     @comment = Comment.new
