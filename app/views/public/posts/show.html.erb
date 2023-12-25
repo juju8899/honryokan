@@ -3,7 +3,7 @@
     <div class="col-12">
       <h2>投稿詳細ページ</h2>
       <div class="row my-5">
-        <div class="col-lg-6 book-section">
+        <div class="col-lg-8 book-section">
           <!--<div class="row">-->
             <div class="book-image">
               <% if @post.isbn.present? %>
@@ -15,7 +15,7 @@
             </div>
             <div class="book-post">
               <p>投稿者 : <strong><%= link_to @post.user.nick_name, user_path(@post.user) %></strong></p>
-              <p>投稿タイトル : <%= @post.title %></p>
+              <p>投稿タイトル : <br><%= @post.title %></p>
               <% @post_tags.each do |tag| %>
                 <i class="fa-solid fa-tag"></i>
                 <%= link_to tag.name,search_tag_path(tag_id: tag.id) %>
@@ -49,18 +49,18 @@
             </div>
           <!--</div>-->
         </div>
-        <div class="col-lg-6 comment-section">
+        <div class="col-lg-4 comment-section">
           <h3>コメント</h3>
           <p><i class="fa-regular fa-comment"></i><%= @post.comments.count %>件</p>
             <% @post.comments.each do |comment| %>
               <div class="comment-user">
                 <div>
                   <%= image_tag comment.user.get_profile_image(100,100) %><br>
-                  <%= comment.created_at.strftime('%Y/%m/%d') %>
+                  <%= comment.created_at.strftime('%Y/%m/%d') %><br>
                   <%= comment.user.nick_name %>
                 </div>
                 <div>
-                  <%= comment.comment %>
+                  <%= comment.comment %><br>
                   <% if comment.user == current_user %>
                     <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %>
                   <% end %>

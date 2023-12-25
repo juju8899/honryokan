@@ -13,7 +13,8 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
   # バリデーション
-  validates :nick_name, presence: true
+  validates :nick_name, presence: true, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  validates :introduction, length: { maximum: 150 }
   validates :email, presence: true, uniqueness: true
 
   # ゲストログインメソッド追加

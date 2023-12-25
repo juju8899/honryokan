@@ -8,8 +8,9 @@ class Post < ApplicationRecord
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
   # バリデーション
-  validates :title, presence: true
-  validates :point, presence: true
+  validates :title, presence: true, length: { minimum: 1, maximum: 40 }
+  validates :point, presence: true, length: { minimum: 5, maximum: 1000 }
+  validates :comment, presence: true, length: { maximum: 70 }
 
   def save_tags(tag_names)
     tag_names = tag_names.reject(&:empty?)# 空のタグ名を除外
@@ -32,7 +33,7 @@ class Post < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
-  
+
   def self.looks(word)
     where("title LIKE ?", "%#{word}%")
   end

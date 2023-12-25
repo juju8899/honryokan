@@ -1,9 +1,9 @@
 <!--マイページ上部部分テンプレート-->
 <div class="row">
-  <div class="col-lg-4">
+  <div class="col-lg-2">
     <%= image_tag user.get_profile_image(100, 100), class:"userimage" %>
   </div>
-  <div class="col-lg-8">
+  <div class="col-lg-10">
     <table class="table">
       <tbody>
         <tr>
@@ -17,10 +17,13 @@
         <tr>
           <td>いいねした件数</td>
           <td><%= link_to user.favorites.count, user_favorites_path(user) %></td>
+        </tr>
+        <tr>
+          <td></td>
           <td>
             <!--ログイン中のユーザーがゲストユーザーではなく、かつ表示中のユーザーと一致している場合、編集・退会ボタンを表示-->
             <% if !user.guest_user? && user == current_user %>
-              <%= link_to "プロフィールを編集", edit_user_path(user), class: "btn btn-primary" %>
+              <%= link_to "編集", edit_user_path(user), class: "btn btn-primary" %>
               <%= link_to "退会", confirm_users_path, class: "btn btn-danger ml-3" %>
             <% end %>
           </td>
