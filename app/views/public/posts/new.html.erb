@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-12">
       <h2>新規投稿</h2>
+      <%= render 'public/shared/error_messages', resource: @post %>
       <%= form_with url: posts_search_path, method: :get do |f| %>
       <div class="row mt-5">
         <div class="col-lg-4 text-center form-group">
