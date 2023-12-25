@@ -10,7 +10,7 @@ class Post < ApplicationRecord
   # バリデーション
   validates :title, presence: true, length: { minimum: 1, maximum: 40 }
   validates :point, presence: true, length: { minimum: 5, maximum: 1000 }
-  validates :comment, presence: true, length: { maximum: 70 }
+  # validates :comment, presence: true, length: { maximum: 70 }
 
   def save_tags(tag_names)
     tag_names = tag_names.reject(&:empty?)# 空のタグ名を除外
